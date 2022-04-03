@@ -4,18 +4,17 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Rank;
 
-class DatabaseSeeder extends Seeder
+class RankSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call([
-            RankSeeder::class
-        ]);
+        Rank::factory(1000)->create();
     }
 }
