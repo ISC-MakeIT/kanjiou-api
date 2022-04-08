@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Register;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+
+    
 });
+
+Route::get('/', [Register::class, 'Index']);
+Route::get('/list', [Register::class, 'AllView']);
+Route::post('/DataPush', [Register::class, 'CatchData']);
+
+
