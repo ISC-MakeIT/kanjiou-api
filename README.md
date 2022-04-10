@@ -43,7 +43,7 @@
 #### レスポンス
 ```json
 {
-    rankes: [
+    "?": [
         {
             "seconds": "int",
             "name": "string"
