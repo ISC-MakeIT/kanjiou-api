@@ -21,7 +21,7 @@ class RankFactory extends Factory
     public function definition()
     {
         return [
-            'seconds' => $this->faker->numberBetween(40, 500),
+            'seconds' => $this->faker->numberBetween(5, 60),
             'name' => Str::random($this->faker->numberBetween(1, 8)),
         ];
     }

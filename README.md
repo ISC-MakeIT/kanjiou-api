@@ -32,3 +32,30 @@
 ```json
 {}
 ```
+
+### /rankes
+#### 説明
+順位を一覧して返します
+#### リクエスト
+```json
+{}
+```
+#### レスポンス
+```json
+{
+    rankes: [
+        {
+            "seconds": "int",
+            "name": "string"
+        },
+        {
+            "seconds": "int",
+            "name": "string"
+        },
+        {
+            "seconds": "int",
+            "name": "string"
+        },
+    ]
+}
+```
