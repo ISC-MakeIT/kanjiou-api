@@ -22,11 +22,11 @@ class RankedRegisterRequst extends FormRequest
 
     public function messages() {
         return [
-            "seconds.request" => "秒数は必須項目です",
+            "seconds.required" => "秒数は必須項目です",
             "seconds.integer" => "秒数は数字型でなければなりません",
             "seconds.max" => "秒数は60文字以下でなければなりません",
 
-            "name.request" => "名前は必須項目です",
+            "name.required" => "名前は必須項目です",
             "name.string" => "名前は文字列型でなければなりません",
             "name.max" => "名前は8文字以下でなければなりません",
         ];
