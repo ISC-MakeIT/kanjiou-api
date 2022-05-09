@@ -10,7 +10,7 @@ use App\Models\Rank;
 class RankController extends Controller
 {
     function ranked(RankedRequest $request) {
-        $rank = Rank::where("seconds", "<", $request->seconds)->count() + 1;
+        $rank = Rank::where("seconds", ">", $request->seconds)->count() + 1;
         $res = ["is_ranked" => $rank <= 100];
         if ($rank <= 100) {
             $res += ["rank" => $rank];
@@ -24,6 +24,6 @@ class RankController extends Controller
         return response(true, 200);
     }
     function ranks() {
-        return Rank::orderBy("seconds", "asc")->get();
+        return Rank::orderBy("seconds", "desc")->get();
     }
 }
