@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Rank;
+use App\Models\TimeLimit;
 
-class RankSeeder extends Seeder
+class TimeLimitSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +14,6 @@ class RankSeeder extends Seeder
      */
     public function run()
     {
-        Rank::factory(100)->create();
+        TimeLimit::factory(200)->create();
     }
 }
