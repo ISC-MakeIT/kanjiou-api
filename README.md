@@ -33,22 +33,20 @@ php artisan db:seed # テストデータ挿入
 ```
 #### レスポンス
 ```json
-{
-    [
-        {
-            "seconds": "int",
-            "name": "string"
-        },
-        {
-            "seconds": "int",
-            "name": "string"
-        },
-        {
-            "seconds": "int",
-            "name": "string"
-        },
-    ]
-}
+[
+    {
+        "seconds": "int",
+        "name": "string"
+    },
+    {
+        "seconds": "int",
+        "name": "string"
+    },
+    {
+        "seconds": "int",
+        "name": "string"
+    },
+]
 ```
 
 ### POST /time_limits
