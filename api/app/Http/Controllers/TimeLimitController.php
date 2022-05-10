@@ -15,14 +15,14 @@ class TimeLimitController extends Controller
         $time_limit_ranks = TimeLimitRank::get()->toArray();
         foreach ($time_limit_ranks as $index => $time_limit_rank) {
             if ($time_limit_rank['seconds'] == $request->seconds || $time_limit_rank['seconds'] < $request->seconds) {
-                return $time_limit_rank['rank'];
+                return ['rank' => $time_limit_rank['rank']];
             }
             if ($time_limit_rank['seconds'] > $request->seconds) {
                 $rank = $index == 99 ? throw new ModelNotFoundException() : $time_limit_rank['rank'];
                 continue;
             }
         }
-        return $rank;
+        return ['rank' => $rank];
     }
     public function find_all() {
         $ranks = TimeLimitRank::get()->toArray();
