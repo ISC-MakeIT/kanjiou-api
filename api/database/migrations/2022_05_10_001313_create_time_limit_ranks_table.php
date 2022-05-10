@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,12 +14,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ranks', function (Blueprint $table) {
-            $table->id();
-            $table->string("name", 8);
-            $table->integer("seconds", false, true);
-            $table->timestamps();
-        });
+        DB::statement("
+            CREATE VIEW time_limit_ranks AS
+                SELECT
+                    name,
+                    seconds,
+                    RANK() OVER (ORDER BY seconds DESC) AS `rank`
+                FROM time_limits limit 100
+        ");
     }
 
     /**
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ranks');
+        DB::statement("DROP VIEW time_limit_ranks");
     }
 };

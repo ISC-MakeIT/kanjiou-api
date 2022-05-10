@@ -2,24 +2,21 @@
 
 namespace App\Models;
 
+use App\Events\TimeLimitCreated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rank extends Model
+class TimeLimit extends Model
 {
     use HasFactory;
 
+    public const UPDATED_AT = null;
     protected $fillable = [
         'name',
         'seconds',
     ];
 
     protected $hidden = [
-        'id',
-        'updated_at'
-    ];
-
-    protected $casts = [
-        'seconds' => 'int'
+        'time_limit_id',
     ];
 }
