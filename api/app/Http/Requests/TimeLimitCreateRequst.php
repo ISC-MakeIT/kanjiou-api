@@ -4,19 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RankedRegisterRequst extends FormRequest
+class TimeLimitCreateRequst extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
         return true;
     }
 
-    public function get_data() {
+    public function time_limit_data() {
         return $this->only("seconds", "name");
     }
 
@@ -31,11 +26,7 @@ class RankedRegisterRequst extends FormRequest
             "name.max" => "名前は8文字以下でなければなりません",
         ];
     }
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+
     public function rules()
     {
         return [
