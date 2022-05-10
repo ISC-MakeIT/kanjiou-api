@@ -66,3 +66,17 @@ php artisan db:seed # テストデータ挿入
 {}
 ```
 
+### DELETE /time_limits
+#### 説明
+time_limit_idを渡すとそのデータを削除してくれる
+#### リクエスト
+```json
+{
+    "time_limit_id": "int"
+}
+```
+#### レスポンス
+```json
+{}
+```
+
