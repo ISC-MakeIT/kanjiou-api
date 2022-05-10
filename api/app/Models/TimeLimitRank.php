@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class TimeLimitRank extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    public $timestamps = false;
-    public $fillable = [
-        'rank',
-        'name',
-        'seconds',
-    ];
+	public $timestamps = false;
+	public $fillable = [
+		'rank',
+		'name',
+		'seconds',
+	];
 }

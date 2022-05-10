@@ -11,18 +11,18 @@ use App\Models\TimeLimit;
  */
 class TimeLimitFactory extends Factory
 {
-    protected $model = TimeLimit::class;
+	protected $model = TimeLimit::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
-    {
-        return [
-            'seconds' => $this->faker->numberBetween(5, 35),
-            'name' => Str::random($this->faker->numberBetween(1, 8)),
-        ];
-    }
+	/**
+	 * Define the model's default state.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function definition()
+	{
+		return [
+			'seconds' => $this->faker->numberBetween(5, 35),
+			'name'    => Str::random($this->faker->numberBetween(1, 8)),
+		];
+	}
 }

@@ -7,13 +7,13 @@ use App\Models\TimeLimit;
 
 class TimeLimitSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        TimeLimit::factory(200)->create();
-    }
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		TimeLimit::factory(200)->create();
+	}
 }

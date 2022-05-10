@@ -14,6 +14,6 @@ use App\Http\Controllers\RankController;
 |
 */
 
-Route::get("/ranks", [RankController::class, "ranks"]);
-Route::get("/ranked", [RankController::class, "ranked"]);
-Route::post("/register", [RankController::class, "register"]);
+Route::get('/ranks', [RankController::class, 'ranks']);
+Route::get('/ranked', [RankController::class, 'ranked']);
+Route::post('/register', [RankController::class, 'register']);
