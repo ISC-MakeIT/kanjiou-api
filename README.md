@@ -7,7 +7,7 @@ php artisan migrate # テーブル作成
 php artisan db:seed # テストデータ挿入
 ```
 ## API一覧
-### /ranked
+### GET /time_limits/time_limit
 #### 説明
 100以内入っているか返します。  
 入っていれば順位も一緒に返します。
@@ -20,27 +20,11 @@ php artisan db:seed # テストデータ挿入
 #### レスポンス
 ```json
 {
-    "is_ranked": "boolean",
-    "rank": "int"
+    "rank": "int",
 }
 ```
 
-### /register
-#### 説明
-秒数と名前を渡すと順位に登録されます。
-#### リクエスト
-```json
-{
-    "seconds": "int",
-    "name": "string"
-}
-```
-#### レスポンス
-```json
-{}
-```
-
-### /rankes
+### GET /time_limits
 #### 説明
 順位を一覧して返します
 #### リクエスト
@@ -50,7 +34,7 @@ php artisan db:seed # テストデータ挿入
 #### レスポンス
 ```json
 {
-    "?": [
+    [
         {
             "seconds": "int",
             "name": "string"
@@ -66,3 +50,19 @@ php artisan db:seed # テストデータ挿入
     ]
 }
 ```
+
+### POST /time_limits
+#### 説明
+秒数と名前を渡すと順位に登録されます。
+#### リクエスト
+```json
+{
+    "seconds": "int",
+    "name": "string"
+}
+```
+#### レスポンス
+```json
+{}
+```
+
