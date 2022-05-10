@@ -1,4 +1,11 @@
 # 漢字王決定戦API
+## Setup
+```bash
+chmod 700 setup.sh
+bash setup.sh       # パッケージインストール等
+php artisan migrate # テーブル作成
+php artisan db:seed # テストデータ挿入
+```
 ## API一覧
 ### /ranked
 #### 説明
