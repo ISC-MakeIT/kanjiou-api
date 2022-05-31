@@ -9,9 +9,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('time_limit_deletes', function (Blueprint $table) {
-			$table->string('name', 8);
-			$table->integer('seconds', false, true);
+            $table->foreignId('time_limit_id')->primary();
+
 			$table->timestamp('created_at');
+
+            $table->foreign('time_limit_id')->references('time_limit_id')->on('time_limits');
         });
     }
 

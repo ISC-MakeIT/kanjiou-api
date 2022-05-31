@@ -9,9 +9,9 @@ class TimeLimitDelete extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'time_limit_id';
 	public const UPDATED_AT = null;
-    public $fillable = [
-        'name',
-        'seconds',
+    protected $fillable = [
+        'time_limit_id'
     ];
 }
