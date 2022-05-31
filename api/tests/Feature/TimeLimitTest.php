@@ -27,7 +27,7 @@ class TimeLimitTest extends TestCase
     {
         $response = $this->get('/api/time_limits');
         $response->assertOk();
-        $response->assertJson(TimeLimitRank::get()->toArray());
+        $response->assertJson(TimeLimit::find_all());
     }
 
     public function test_登録を行える(): void
@@ -38,7 +38,12 @@ class TimeLimitTest extends TestCase
         ];
         $response = $this->post('/api/time_limits', $time_limit_data);
         $response->assertOk();
-        $this->assertEquals($time_limit_data, TimeLimitRank::first(['seconds', 'name'])->toArray());
+        $this->assertEquals(
+            $time_limit_data,
+            TimeLimit::orderBy('time_limit_id', 'desc')
+                    ->first(['seconds', 'name'])
+                    ->toArray()
+        );
     }
 
     public function test_削除を行える(): void
@@ -50,9 +55,6 @@ class TimeLimitTest extends TestCase
             'time_limit_id' => $time_limit['time_limit_id']
         ]);
         $response->assertOk();
-        $is_time_limit_delete = TimeLimitDelete::where('name', $time_limit['name'])
-                        ->where('seconds', $time_limit['seconds'])
-                        ->exists();
-        $this->assertTrue($is_time_limit_delete);
+        $this->assertNotNull(TimeLimitDelete::find($time_limit['time_limit_id']));
     }
 }

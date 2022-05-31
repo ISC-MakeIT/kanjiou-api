@@ -11,13 +11,6 @@ use App\Models\TimeLimit;
  */
 class TimeLimitFactory extends Factory
 {
-	protected $model = TimeLimit::class;
-
-	/**
-	 * Define the model's default state.
-	 *
-	 * @return array<string, mixed>
-	 */
 	public function definition()
 	{
 		return [
