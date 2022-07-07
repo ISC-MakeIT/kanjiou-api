@@ -13,7 +13,6 @@ use App\Http\Controllers\RankController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/ranks', [RankController::class, 'ranks']);
-Route::get('/ranked', [RankController::class, 'ranked']);
-Route::post('/register', [RankController::class, 'register']);
+Route::get('/', function() {
+    return view('welcome');
+});

@@ -12,8 +12,6 @@ return new class extends Migration
             $table->foreignId('time_limit_id')->primary();
 
 			$table->timestamp('created_at');
-
-            $table->foreign('time_limit_id')->references('time_limit_id')->on('time_limits');
         });
     }
 
