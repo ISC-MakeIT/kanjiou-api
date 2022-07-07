@@ -1,8 +1,10 @@
 # 漢字王決定戦API
 ## Setup
 ```bash
+docker-compose up -d
+docker-compose exec kanjiou-api bash
 chmod 700 setup.sh
-bash setup.sh       # パッケージインストール等
+./setup.sh       # パッケージインストール等
 php artisan migrate # テーブル作成
 php artisan db:seed # テストデータ挿入
 ```
