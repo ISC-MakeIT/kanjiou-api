@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\TimeLimit;
+use Packages\Infrastructure\EloquentModels\TimeLimit\TimeLimit;
 
 class TimeLimitSeeder extends Seeder
 {
