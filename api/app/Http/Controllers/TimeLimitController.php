@@ -2,27 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TimeLimitCreateRequst;
-use App\Http\Requests\TimeLimitDeleteRequest;
-use App\Http\Requests\TimeLimitRequest;
-use App\Models\TimeLimit;
+use App\Http\Requests\TimeLimit\CreateTimeLimitRequst;
+use App\Http\Requests\TimeLimit\DeleteTimeLimitRequest;
+use App\Http\Requests\TimeLimit\TimeLimitRequest;
+use Packages\Service\TimeLimit\FindTimeLimitService;
+use Packages\Service\TimeLimit\RegisterTimeLimitService;
 
 class TimeLimitController extends Controller
 {
-	public function find_one(TimeLimitRequest $request)
+    private FindTimeLimitService $findTimeLimitService;
+    private RegisterTimeLimitService $registerTimeLimitService;
+
+    public function __construct(
+        FindTimeLimitService $findTimeLimitService,
+        RegisterTimeLimitService $registerTimeLimitService,
+    )
+    {
+        $this->findTimeLimitService = $findTimeLimitService;
+        $this->registerTimeLimitService = $registerTimeLimitService;
+    }
+
+	public function timeLimits(): array
 	{
-		return ['rank' => TimeLimit::find_rank($request->seconds)];
+        return $this->findTimeLimitService->timeLimits();
 	}
-	public function find_all()
+
+	public function timeLimit(TimeLimitRequest $request): array
 	{
-		return TimeLimit::find_all();
+        return $this->findTimeLimitService->timeLimit($request->ofDomain());
 	}
-	public function time_limit_create(TimeLimitCreateRequst $request)
+
+	public function createTimeLimit(CreateTimeLimitRequst $request): void
 	{
-		TimeLimit::create($request->time_limit_data());
+        $this->registerTimeLimitService->createTimeLimit($request->ofDomain());
 	}
-	public function time_limit_delete(TimeLimitDeleteRequest $request)
+
+	public function deleteTimeLimit(DeleteTimeLimitRequest $request): void
 	{
-        TimeLimit::to_delete($request->time_limit_id);
+        $this->registerTimeLimitService->deleteTimeLimit($request->ofDomain());
 	}
 }
