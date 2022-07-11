@@ -8,15 +8,17 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('time_limit_deletes', function (Blueprint $table) {
-            $table->foreignId('time_limit_id')->primary();
+        Schema::create('users', function (Blueprint $table) {
+            $table->id('user_id');
 
+            $table->string('email', 254);
+            $table->string('password', 254);
 			$table->timestamp('created_at');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('time_limit_deletes');
+        Schema::dropIfExists('users');
     }
 };

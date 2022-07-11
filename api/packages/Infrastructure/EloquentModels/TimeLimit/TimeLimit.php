@@ -21,7 +21,6 @@ class TimeLimit extends Model
 		'name',
 		'seconds',
 	];
-
 	protected $hidden = [
 		'time_limit_id',
 	];
