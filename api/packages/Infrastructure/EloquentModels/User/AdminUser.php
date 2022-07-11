@@ -1,17 +1,20 @@
 <?php
 
-namespace Packages\Infrastructure\EloquentModels\TimeLimit;
+namespace Packages\Infrastructure\EloquentModels\User;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TimeLimitDelete extends Model
+class AdminUser extends Model
 {
     use HasFactory;
 
 	public const UPDATED_AT = null;
-    protected $primaryKey = 'time_limit_id';
+    protected $primaryKey = 'user_id';
     protected $fillable = [
-        'time_limit_id'
+        'user_id',
+    ];
+    protected $hidden = [
+        'created_at'
     ];
 }

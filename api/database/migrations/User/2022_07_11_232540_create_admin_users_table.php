@@ -8,8 +8,8 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('time_limit_deletes', function (Blueprint $table) {
-            $table->foreignId('time_limit_id')->primary();
+        Schema::create('admin_users', function (Blueprint $table) {
+            $table->foreignId('user_id')->primary();
 
 			$table->timestamp('created_at');
         });
@@ -17,6 +17,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('time_limit_deletes');
+        Schema::dropIfExists('admin_users');
     }
 };
