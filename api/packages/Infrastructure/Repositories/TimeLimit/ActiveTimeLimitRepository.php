@@ -14,7 +14,7 @@ final class ActiveTimeLimitRepository
         $timeLimitList = new TimeLimitList([]);
 		TimeLimit::doesntHave('delete')
             ->orderBy('seconds', 'desc')
-            ->take(100)
+            ->take(101)
             ->get()
             ->map(function(TimeLimit $timeLimit) use (&$timeLimitList) {
                 $timeLimitList = $timeLimitList->addTimeLimit($timeLimit->ofDomain());
