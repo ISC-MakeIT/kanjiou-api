@@ -2,18 +2,20 @@
 
 namespace Packages\Domain\Models;
 
-use Packages\Domain\Exceptions\InvariantException;
+use Illuminate\Support\Facades\Validator;
 
 abstract class StringLengthLimit
 {
 	protected int $lengthLimit;
 	protected string $value;
+    protected string $name;
 
 	protected function __construct(string $value)
 	{
-		if ($this->lengthLimit < mb_strlen($value)) {
-			throw new InvariantException('value length must be less then or equals to '.$this->lengthLimit.' characters:'.$value);
-		}
+        Validator::make(
+            ['name' => $value],
+            ['name' => ["max:{$this->lengthLimit}"]]
+        )->validate();
 		$this->value = $value;
 	}
 

@@ -46,4 +46,12 @@ final class TimeLimit
     {
         return $this->createdAt;
     }
+
+    public function ofJson(): array {
+        return [
+            'seconds'       => $this->seconds->value(),
+            'name'          => $this->name->value(),
+            'created_at'    => (string) $this->createdAt,
+        ];
+    }
 }

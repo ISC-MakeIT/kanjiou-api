@@ -2,27 +2,27 @@
 
 namespace Tests\Feature\TimeLimit;
 
-use Packages\Assembler\TimeLimitAssember;
-use Packages\Service\TimeLimit\FindTimeLimitService;
-use Packages\Service\TimeLimit\RegisterTimeLimitService;
-use Packages\Infrastructure\Repositories\TimeLimit\TimeLimitRepository;
+use Packages\Infrastructure\Repositories\TimeLimit\ActiveTimeLimitRepository;
+use Packages\Infrastructure\Repositories\TimeLimit\DeleteTimeLimitRepository;
+use Packages\Infrastructure\Repositories\TimeLimit\InitTimeLimitRepository;
+use Packages\Service\TimeLimit\CommandTimeLimitService;
+use Packages\Service\TimeLimit\QueryTimeLimitService;
 use Tests\DBRefreshTestCase;
 
 class TimeLimitTestCase extends DBRefreshTestCase
 {
-    protected FindTimeLimitService $findTimeLimitService;
-    protected RegisterTimeLimitService $registerTimeLimitService;
+    protected CommandTimeLimitService $commandTimeLimitService;
+    protected QueryTimeLimitService $queryTimeLimitService;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->findTimeLimitService = new FindTimeLimitService(
-            new TimeLimitAssember(),
-            new TimeLimitRepository()
+        $this->commandTimeLimitService = new CommandTimeLimitService(
+            new ActiveTimeLimitRepository()
         );
-        $this->registerTimeLimitService = new RegisterTimeLimitService(
-            new TimeLimitAssember(),
-            new TimeLimitRepository()
+        $this->queryTimeLimitService = new QueryTimeLimitService(
+            new InitTimeLimitRepository(),
+            new DeleteTimeLimitRepository()
         );
     }
 }

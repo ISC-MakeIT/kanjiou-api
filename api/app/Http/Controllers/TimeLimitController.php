@@ -5,40 +5,40 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TimeLimit\CreateTimeLimitRequst;
 use App\Http\Requests\TimeLimit\DeleteTimeLimitRequest;
 use App\Http\Requests\TimeLimit\TimeLimitRequest;
-use Packages\Service\TimeLimit\FindTimeLimitService;
-use Packages\Service\TimeLimit\RegisterTimeLimitService;
+use Packages\Service\TimeLimit\CommandTimeLimitService;
+use Packages\Service\TimeLimit\QueryTimeLimitService;
 
 class TimeLimitController extends Controller
 {
-    private FindTimeLimitService $findTimeLimitService;
-    private RegisterTimeLimitService $registerTimeLimitService;
+    private CommandTimeLimitService $commandTimeLimitService;
+    private QueryTimeLimitService $queryTimeLimitService;
 
     public function __construct(
-        FindTimeLimitService $findTimeLimitService,
-        RegisterTimeLimitService $registerTimeLimitService,
+        CommandTimeLimitService $commandTimeLimitService,
+        QueryTimeLimitService $queryTimeLimitService,
     )
     {
-        $this->findTimeLimitService = $findTimeLimitService;
-        $this->registerTimeLimitService = $registerTimeLimitService;
+        $this->commandTimeLimitService = $commandTimeLimitService;
+        $this->queryTimeLimitService = $queryTimeLimitService;
     }
 
 	public function timeLimits(): array
 	{
-        return $this->findTimeLimitService->timeLimits();
+        return $this->commandTimeLimitService->timeLimits();
 	}
 
 	public function timeLimit(TimeLimitRequest $request): array
 	{
-        return $this->findTimeLimitService->timeLimit($request->ofDomain());
+        return $this->commandTimeLimitService->timeLimit($request->ofDomain());
 	}
 
 	public function createTimeLimit(CreateTimeLimitRequst $request): void
 	{
-        $this->registerTimeLimitService->createTimeLimit($request->ofDomain());
+        $this->queryTimeLimitService->createTimeLimit($request->ofDomain());
 	}
 
 	public function deleteTimeLimit(DeleteTimeLimitRequest $request): void
 	{
-        $this->registerTimeLimitService->deleteTimeLimit($request->ofDomain());
+        $this->queryTimeLimitService->deleteTimeLimit($request->ofDomain());
 	}
 }
