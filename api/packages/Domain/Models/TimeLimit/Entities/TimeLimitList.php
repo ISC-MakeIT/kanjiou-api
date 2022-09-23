@@ -60,7 +60,7 @@ final class TimeLimitList {
             }
             if ($seconds->value() > $timeLimit['seconds']) break;
         }
-        if ($rank === 100) throw new OutOfRankingException();
+        if ($rank === 101) throw new OutOfRankingException();
         return ['rank' => $rank];
     }
 }
