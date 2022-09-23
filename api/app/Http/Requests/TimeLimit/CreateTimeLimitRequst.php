@@ -3,7 +3,7 @@
 namespace App\Http\Requests\TimeLimit;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Packages\Domain\Models\TimeLimit\Entities\CreateTimeLimit;
+use Packages\Domain\Models\TimeLimit\Entities\InitTimeLimit;
 use Packages\Domain\Models\TimeLimit\ValueObjects\Name;
 use Packages\Domain\Models\TimeLimit\ValueObjects\Seconds;
 
@@ -16,15 +16,12 @@ class CreateTimeLimitRequst extends FormRequest
 
 	public function rules()
 	{
-		return [
-			'name'    => [],
-			'seconds' => [],
-		];
+		return [];
 	}
 
-    public function ofDomain(): CreateTimeLimit
+    public function ofDomain(): InitTimeLimit
     {
-        return new CreateTimeLimit(
+        return new InitTimeLimit(
             Name::of($this->name),
             Seconds::of($this->seconds)
         );

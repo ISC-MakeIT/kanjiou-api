@@ -5,7 +5,7 @@ namespace Packages\Domain\Models\TimeLimit\Entities;
 use Packages\Domain\Models\TimeLimit\ValueObjects\Name;
 use Packages\Domain\Models\TimeLimit\ValueObjects\Seconds;
 
-final class CreateTimeLimit
+final class InitTimeLimit
 {
     private Name $name;
     private Seconds $seconds;

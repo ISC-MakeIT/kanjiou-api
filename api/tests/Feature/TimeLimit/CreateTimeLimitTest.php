@@ -8,18 +8,28 @@ class CreateTimeLimitTest extends TimeLimitTestCase
 {
     public function test_順位の登録を行う(): void
     {
-        $timeLimit = [
+        $request = [
             'seconds' => 60,
             'name' => 'test',
         ];
-        $response = $this->post('/api/time_limits', $timeLimit);
+        $response = $this->post('/api/time_limits', $request);
         $response->assertOk();
-        $eloquentTimeLimit = TimeLimit::orderBy('time_limit_id', 'desc')
+        $timeLimit = TimeLimit::orderBy('time_limit_id', 'desc')
             ->first(['seconds', 'name'])
             ->toArray();
         $this->assertEquals(
-            $timeLimit,
-            $eloquentTimeLimit
+            $request,
+            $timeLimit
         );
+    }
+
+    public function test_順位の登録を行う際に名前が9文字以上だった場合400が返ること(): void
+    {
+        $request = [
+            'seconds' => 60,
+            'name' => 'aaaaaaaaa',
+        ];
+        $response = $this->post('/api/time_limits', $request);
+        $response->assertStatus(400);
     }
 }

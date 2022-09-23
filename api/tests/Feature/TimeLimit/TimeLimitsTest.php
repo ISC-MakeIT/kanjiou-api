@@ -8,6 +8,6 @@ class TimeLimitsTest extends TimeLimitTestCase
     {
         $response = $this->get('/api/time_limits');
         $response->assertOk();
-        $response->assertJson($this->findTimeLimitService->timeLimits());
+        $response->assertJson($this->commandTimeLimitService->timeLimits());
     }
 }
