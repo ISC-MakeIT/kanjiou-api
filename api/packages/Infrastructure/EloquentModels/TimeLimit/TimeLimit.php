@@ -20,6 +20,7 @@ class TimeLimit extends Model
 	protected $fillable = [
 		'name',
 		'seconds',
+        'created_at'
 	];
 	protected $hidden = [
 		'time_limit_id',
