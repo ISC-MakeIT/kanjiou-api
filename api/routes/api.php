@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TimeLimitController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -13,4 +14,6 @@ Route::prefix('/time_limits')->group(function () {
 
 Route::prefix('/users')->group(function() {
     Route::post('/', [UserController::class, 'createUser']);
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
