@@ -11,8 +11,7 @@ class UserController extends Controller
 
     public function __construct(
         InitUserService $initUserService
-    )
-    {
+    ) {
         $this->initUserService = $initUserService;
     }
 
