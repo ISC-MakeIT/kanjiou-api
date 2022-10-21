@@ -12,11 +12,11 @@ class User extends Model
 	public const UPDATED_AT = null;
     protected $primaryKey = 'user_id';
     protected $fillable = [
-        'email',
+        'username',
         'password'
     ];
     protected $hidden = [
-        'email',
+        'username',
         'password',
         'created_at'
     ];

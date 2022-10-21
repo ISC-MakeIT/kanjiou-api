@@ -6,6 +6,8 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Packages\Domain\Exceptions\InvariantException;
 use Packages\Domain\Exceptions\TimeLimit\OutOfRankingException;
+use Packages\Infrastructure\Repositories\Exceptions\User\FailCreateUserExcepiton;
+use Packages\Infrastructure\Repositories\Exceptions\User\IllegalCreateUserExcepiton;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -35,12 +37,23 @@ class Handler extends ExceptionHandler
         if ($e instanceof InvariantException) {
             return response($e->getMessage(), 400);
         }
+
         if ($e instanceof OutOfRankingException) {
             return response('ランキング外です。', 400);
         }
+
+        if ($e instanceof IllegalCreateUserExcepiton) {
+            return response('既にユーザーの作成が行われています。', 500);
+        }
+
+        if ($e instanceof FailCreateUserExcepiton) {
+            return response('ユーザーの作成に失敗しました。', 500);
+        }
+
         if ($e instanceof ValidationException) {
             return response($e->errors(), 400);
         }
+
         if (config('app.debug')) {
             parent::render($request, $e);
             return;
