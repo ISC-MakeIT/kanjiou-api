@@ -5,12 +5,8 @@ docker-compose up -d
 docker-compose exec kanjiou-api bash
 chmod 700 setup.sh
 ./setup.sh          # パッケージインストール等
-php artisan migrate # テーブル作成
+php artisan migrate --path=database/migrations/** # テーブル作成
 php artisan db:seed # テストデータ挿入
-```
-## original commands
-```bash
-php artisan make:admin {email} {password} # 管理者ユーザー作成
 ```
 ## API一覧
 ### GET /time_limits/time_limit
