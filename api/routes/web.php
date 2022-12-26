@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RankController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +12,6 @@ use App\Http\Controllers\RankController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function() {
+Route::get('/', function () {
     return view('welcome');
 });

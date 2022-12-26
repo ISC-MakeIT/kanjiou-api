@@ -2,15 +2,12 @@
 
 namespace Tests;
 
-use Illuminate\Support\Facades\Artisan;
-use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class DBRefreshTestCase extends TestCase
-{
-    protected function setUp():void
-    {
+class DBRefreshTestCase extends TestCase {
+    use DatabaseTransactions;
+
+    protected function setUp(): void {
         parent::setUp();
-        Artisan::call('migrate:fresh --path=database/migrations/**');
-        Artisan::call('db:seed');
     }
 }
