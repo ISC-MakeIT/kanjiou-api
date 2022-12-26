@@ -14,4 +14,12 @@ enum GameMode: string {
             GameMode::ONE_DOG_AMOUNG_SHEEP => 'oneDogAmoungSheep'
         };
     }
+
+    public function toParams(): string {
+        return '&gameMode=' . $this->ofJa();
+    }
+
+    public static function elseDefaultOldestGameModeValue($value): GameMode {
+        return GameMode::tryFrom($value) ?? GameMode::ONE_DOG_AMOUNG_SHEEP;
+    }
 }

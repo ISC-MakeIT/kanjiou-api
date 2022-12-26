@@ -3,6 +3,7 @@
 namespace Packages\Domain\Record\Entities;
 
 use Packages\Domain\Elements;
+use Packages\Domain\GameMode\ValueObjects\GameMode;
 use Packages\Domain\Rank\Entities\RankList;
 use Packages\Domain\Rank\ValueObjects\RankOrder;
 
@@ -24,6 +25,20 @@ final class RecordList extends Elements {
         }
 
         array_multisort($absolute, SORT_DESC, $filtered);
+
+        return RecordList::from($filtered);
+    }
+
+    public function filterByGameMode(GameMode $gameMode): RecordList {
+        $filtered = [];
+
+        foreach ($this->value() as $record) {
+            if ($record->gameMode() !== $gameMode) {
+                continue;
+            }
+
+            $filtered[] = $record;
+        }
 
         return RecordList::from($filtered);
     }

@@ -10,4 +10,5 @@ Route::prefix('/records')->group(function () {
 
 Route::prefix('/ranks')->group(function () {
     Route::get('/', [RankController::class, 'rankList']);
+    Route::get('/{secondsLeft}', [RankController::class, 'isRankedIn']);
 });

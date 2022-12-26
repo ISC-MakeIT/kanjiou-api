@@ -3,7 +3,7 @@
 namespace Packages\Service\Rank\Query;
 
 use Packages\Domain\Rank\Entities\RankList;
-use Packages\Domain\Rank\ValueObjects\SearchRankCount;
+use Packages\Domain\Rank\Entities\SearchRankList;
 use Packages\Infrastructure\Repositories\Record\RecordListRepository;
 
 final class RankListService {
@@ -13,9 +13,11 @@ final class RankListService {
         $this->recordListRepository = $recordListRepository;
     }
 
-    public function rankList(SearchRankCount $searchRankCount): RankList {
+    public function rankList(SearchRankList $searchRankList): RankList {
         $recordList = $this->recordListRepository->recordList();
 
-        return $recordList->toRankList()->copyOfRange(0, $searchRankCount->value());
+        return $recordList->filterByGameMode($searchRankList->gameMode())
+                          ->toRankList()
+                          ->copyOfRange(0, $searchRankList->rankCount()->value());
     }
 }

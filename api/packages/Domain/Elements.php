@@ -17,6 +17,10 @@ class Elements implements DomainModel {
         return $this->value;
     }
 
+    public function add($value): static {
+        return static::from(array_merge($this->value(), [$value]));
+    }
+
     public function copyOfRange(int $start, int $end): static {
         $filtered = [];
 

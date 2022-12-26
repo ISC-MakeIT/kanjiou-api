@@ -8,10 +8,10 @@ final class SearchRankCount extends PositiveNumber {
     protected string $name = '絞り込み用取得ランク数';
 
     public function toParams(): string {
-        return '?' . $this->value;
+        return '&rankCount=' . $this->value;
     }
 
-    public static function elseHundredValue($value): SearchRankCount {
+    public static function elseDefaultHundredValue($value): SearchRankCount {
         if (!$value) {
             return SearchRankCount::from(100);
         }
