@@ -1,12 +1,12 @@
 <?php
 
-namespace Packages\Domain\Rank\Entities;
+namespace Packages\Domain\Record\Entities;
 
 use Packages\Domain\GameMode\ValueObjects\GameMode;
-use Packages\Domain\Rank\ValueObjects\Name;
-use Packages\Domain\Rank\ValueObjects\SecondsLeft;
+use Packages\Domain\Record\ValueObjects\Name;
+use Packages\Domain\Record\ValueObjects\SecondsLeft;
 
-final class InitRank {
+final class InitRecord {
     private GameMode $gameMode;
     private Name $name;
     private SecondsLeft $secondsLeft;
@@ -37,8 +37,8 @@ final class InitRank {
         GameMode $gameMode,
         Name $name,
         SecondsLeft $secondsLeft,
-    ): InitRank {
-        return new InitRank(
+    ): InitRecord {
+        return new InitRecord(
             $gameMode,
             $name,
             $secondsLeft,

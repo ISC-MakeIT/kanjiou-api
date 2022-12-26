@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Requests\Rank;
+namespace App\Http\Requests\Record;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Packages\Domain\Error\Entities\ErrorList;
 use Packages\Domain\GameMode\ValueObjects\GameMode;
-use Packages\Domain\Rank\Entities\InitRank;
-use Packages\Domain\Rank\ValueObjects\Name;
-use Packages\Domain\Rank\ValueObjects\SecondsLeft;
+use Packages\Domain\Record\Entities\InitRecord;
+use Packages\Domain\Record\ValueObjects\Name;
+use Packages\Domain\Record\ValueObjects\SecondsLeft;
 
-class RegisterRankRequest extends FormRequest {
+class RegisterRecordRequest extends FormRequest {
     public function authorize(): bool {
         return true;
     }
@@ -19,10 +19,10 @@ class RegisterRankRequest extends FormRequest {
         ];
     }
 
-    public function ofDomain(): InitRank {
+    public function toDomain(): InitRecord {
         $errorList = ErrorList::from([]);
 
-        $initRank = InitRank::from(
+        $initRank = InitRecord::from(
             GameMode::from($this->gameMode),
             Name::unsafetyFrom($this->name),
             SecondsLeft::unsafetyFrom($this->secondsLeft)

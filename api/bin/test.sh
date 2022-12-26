@@ -1,3 +1,3 @@
 #!/bin/sh
-./migration_seeding.sh
+./bin/migration_seeding.sh
 php artisan test

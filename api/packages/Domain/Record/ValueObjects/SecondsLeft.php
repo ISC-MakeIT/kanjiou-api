@@ -1,6 +1,6 @@
 <?php
 
-namespace Packages\Domain\Rank\ValueObjects;
+namespace Packages\Domain\Record\ValueObjects;
 
 use Illuminate\Support\Facades\Validator;
 use Packages\Domain\PositiveNumber;
