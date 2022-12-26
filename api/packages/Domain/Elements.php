@@ -17,6 +17,20 @@ class Elements implements DomainModel {
         return $this->value;
     }
 
+    public function copyOfRange(int $start, int $end): static {
+        $filtered = [];
+
+        foreach ($this->value() as $indexOfArray => $element) {
+            $index = $indexOfArray + 1;
+
+            if ($index >= $start && $index <= $end) {
+                $filtered[] = $element;
+            }
+        }
+
+        return new static($filtered);
+    }
+
     public function isEmpty(): bool {
         return count($this->value) === 0;
     }
@@ -37,8 +51,8 @@ class Elements implements DomainModel {
         )->getMessageBag()->toArray();
     }
 
-    public static function from($value): Elements {
-        $valueObject = new Elements($value);
+    public static function from($value): static {
+        $valueObject = new static($value);
 
         if ($valueObject->isValidationFailed()) {
             throw ValidationException::withMessages($valueObject->validatedMessages());

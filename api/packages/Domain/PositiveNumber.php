@@ -13,7 +13,7 @@ class PositiveNumber implements DomainModel {
         $this->value = $value;
     }
 
-    public function value(): string {
+    public function value(): int {
         return $this->value;
     }
 

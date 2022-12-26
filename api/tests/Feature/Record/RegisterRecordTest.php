@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Feature\Rank;
+namespace Tests\Feature\Record;
 
 use App\Http\Requests\Record\RegisterRecordRequest;
 use Packages\Domain\GameMode\ValueObjects\GameMode;
 use Packages\Infrastructure\EloquentModels\Record\Record;
-use Tests\TestCase;
+use Tests\DBRefreshTestCase;
 
-class RegisterRecordTest extends TestCase {
+class RegisterRecordTest extends DBRefreshTestCase {
     public function test_レコードの登録を行えること(): void {
         Record::query()->delete();
 

@@ -7,6 +7,8 @@ use Packages\Domain\Rank\Entities\RankList;
 use Packages\Domain\Rank\ValueObjects\RankOrder;
 
 final class RecordList extends Elements {
+    protected string $name = 'ゲーム結果のリスト';
+
     /** @return Record[] */
     public function value(): array {
         return parent::value();
@@ -31,18 +33,22 @@ final class RecordList extends Elements {
             return RankList::from([]);
         }
 
+        $recordList = $this->sortBySecondsLeft();
+
         $currentRankOrder   = 1;
         /** @var Record */
-        $evaluatedRecord = $this->first();
+        $evaluatedRecord = $recordList->first();
         $filtered        = [$evaluatedRecord->toRankWith(RankOrder::from($currentRankOrder))];
 
-        foreach ($this->value() as $index => $record) {
+        foreach ($recordList->value() as $index => $record) {
             if ($evaluatedRecord->secondsLeft() == $record->secondsLeft()) {
-                $filtered[] = $record->toRankWith(RankOrder::from($currentRankOrder));
+                $evaluatedRecord = $record;
+                $filtered[]      = $record->toRankWith(RankOrder::from($currentRankOrder));
                 continue;
             }
 
-            $currentRankOrder = $index + 1;
+            $evaluatedRecord  = $record;
+            $currentRankOrder = $index + 2;
             $filtered[]       = $record->toRankWith(RankOrder::from($currentRankOrder));
         }
 

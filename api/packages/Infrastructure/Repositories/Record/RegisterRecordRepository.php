@@ -16,7 +16,7 @@ final class RegisterRecordRepository {
                     game_modes
                 WHERE
                     name = ?
-            ', [$initRecord->gameMode()->ofEn()]);
+            ', [$initRecord->gameMode()->ofJa()]);
 
             $isSuccess = DB::insert('
                 INSERT INTO records (

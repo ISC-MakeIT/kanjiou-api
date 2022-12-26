@@ -2,6 +2,7 @@
 
 namespace Packages\Infrastructure\EloquentModels\Record;
 
+use Database\Factories\RecordFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,4 +16,8 @@ class Record extends Model {
         'name',
         'seconds_left',
     ];
+
+    protected static function newFactory(): RecordFactory {
+        return RecordFactory::new();
+    }
 }
