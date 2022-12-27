@@ -63,7 +63,7 @@ final class RecordList extends Elements {
             }
 
             $evaluatedRecord  = $record;
-            $currentRankOrder = $index + 2;
+            $currentRankOrder = $index + 1;
             $filtered[]       = $record->toRankWith(RankOrder::from($currentRankOrder));
         }
 

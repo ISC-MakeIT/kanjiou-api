@@ -2,6 +2,7 @@
 
 namespace Packages\Infrastructure\Repositories\Record;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\DB;
 use Packages\Domain\Record\Entities\InitRecord;
 use Packages\Exception\Record\FailRegisterRecordException;
@@ -22,12 +23,14 @@ final class RegisterRecordRepository {
                 INSERT INTO records (
                     game_mode_id,
                     name,
-                    seconds_left
-                ) VALUES (?, ?, ?)
+                    seconds_left,
+                    created_at
+                ) VALUES (?, ?, ?, ?)
             ', [
                 $gameMode->game_mode_id,
                 $initRecord->name()->value(),
                 $initRecord->secondsLeft()->value(),
+                CarbonImmutable::now()
             ]);
 
             if (!$isSuccess) {
