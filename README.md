@@ -9,24 +9,19 @@ php artisan migrate --path=database/migrations/** # テーブル作成
 php artisan db:seed # テストデータ挿入
 ```
 ## API一覧
-### GET /time_limits/time_limit
+### GET /api/ranks/{secondsLeft}
 #### 説明
 100以内入っているか返します。  
 入っていれば順位も一緒に返します。
-#### リクエスト
-```json
-{
-    "seconds": "int"
-}
-```
 #### レスポンス
 ```json
 {
-    "rank": "int",
+    "isRankedIn": "boolean",
+    "rankOrder": "int"
 }
 ```
 
-### GET /time_limits
+### GET /api/ranks
 #### 説明
 順位を一覧して返します
 #### リクエスト
@@ -37,45 +32,34 @@ php artisan db:seed # テストデータ挿入
 ```json
 [
     {
-        "seconds": "int",
-        "rank": "int",
-        "name": "string"
+        "secondsLeft": "int",
+        "rankOrder": "int",
+        "name": "string",
+        "recordedAt": "string",
     },
     {
-        "seconds": "int",
-        "rank": "int",
-        "name": "string"
+        "secondsLeft": "int",
+        "rankOrder": "int",
+        "name": "string",
+        "recordedAt": "string",
     },
     {
-        "seconds": "int",
-        "rank": "int",
-        "name": "string"
-    },
+        "secondsLeft": "int",
+        "rankOrder": "int",
+        "name": "string",
+        "recordedAt": "string",
+    }
 ]
 ```
 
-### POST /time_limits
+### POST /api/records
 #### 説明
-秒数と名前を渡すと順位に登録されます。
+残り秒数と名前を渡すと順位に登録されます。
 #### リクエスト
 ```json
 {
-    "seconds": "int",
+    "secondsLeft": "int",
     "name": "string"
-}
-```
-#### レスポンス
-```json
-{}
-```
-
-### DELETE /time_limits
-#### 説明
-time_limit_idを渡すとそのデータを削除してくれる
-#### リクエスト
-```json
-{
-    "time_limit_id": "int"
 }
 ```
 #### レスポンス
