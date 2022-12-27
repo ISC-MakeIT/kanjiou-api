@@ -2,6 +2,7 @@
 
 namespace Packages\Infrastructure\Repositories\User;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\DB;
 use Packages\Domain\User\Entities\InitUser;
 use Packages\Exception\User\FailRegisterUserException;
@@ -13,11 +14,13 @@ final class RegisterUserRepository {
             $isSuccess = DB::insert('
                 INSERT INTO users (
                     user_name,
-                    password
-                ) VALUES (?, ?)
+                    password,
+                    created_at
+                ) VALUES (?, ?, ?)
             ', [
                 $initUser->userName()->value(),
                 $initUser->password()->toHashValue(),
+                CarbonImmutable::now()
             ]);
 
             if (!$isSuccess) {

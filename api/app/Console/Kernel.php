@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\Batch\CreateGameModes_2022_12_25;
+use App\Console\Commands\User\CreateUser;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -30,5 +31,6 @@ class Kernel extends ConsoleKernel {
 
     protected $commands = [
         CreateGameModes_2022_12_25::class,
+        CreateUser::class,
     ];
 }
