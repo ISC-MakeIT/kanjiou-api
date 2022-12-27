@@ -53,7 +53,7 @@ final class RecordList extends Elements {
         $currentRankOrder   = 1;
         /** @var Record */
         $evaluatedRecord = $recordList->first();
-        $filtered        = [$evaluatedRecord->toRankWith(RankOrder::from($currentRankOrder))];
+        $filtered        = [];
 
         foreach ($recordList->value() as $index => $record) {
             if ($evaluatedRecord->secondsLeft() == $record->secondsLeft()) {

@@ -16,6 +16,14 @@ final class ErrorList {
         return count($this->value) === 0;
     }
 
+    public function hasValidationError(): bool {
+        return !$this->isEmpty();
+    }
+
+    public function validatedMessages(): array {
+        return $this->value;
+    }
+
     public function addIfError(DomainModel $valueObject): ErrorList {
         if ($valueObject->isValidationFailed()) {
             return ErrorList::from(array_merge(

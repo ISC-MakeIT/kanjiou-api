@@ -4,10 +4,10 @@ namespace Packages\Infrastructure\Repositories\Record;
 
 use Illuminate\Support\Facades\DB;
 use Packages\Domain\GameMode\ValueObjects\GameMode;
-use Packages\Domain\Rank\ValueObjects\SearchRankCount;
 use Packages\Domain\Record\Entities\Record;
 use Packages\Domain\Record\Entities\RecordList;
 use Packages\Domain\Record\ValueObjects\Name;
+use Packages\Domain\Record\ValueObjects\RecordId;
 use Packages\Domain\Record\ValueObjects\RecordMetaData;
 use Packages\Domain\Record\ValueObjects\SecondsLeft;
 
@@ -16,6 +16,7 @@ final class RecordListRepository {
         $result     = [];
         $recordList = DB::select('
             SELECT
+                records.record_id    AS record_id,
                 game_modes.name      AS game_mode,
                 records.name         AS name,
                 records.seconds_left AS seconds_left
@@ -27,6 +28,7 @@ final class RecordListRepository {
 
         foreach ($recordList as $record) {
             $result[] = Record::from(
+                RecordId::from($record->record_id),
                 GameMode::from($record->game_mode),
                 RecordMetaData::from(
                     Name::from($record->name),
