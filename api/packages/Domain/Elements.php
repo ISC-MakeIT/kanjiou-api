@@ -39,6 +39,10 @@ class Elements implements DomainModel {
         return count($this->value) === 0;
     }
 
+    public function hasItem(): bool {
+        return !$this->isEmpty();
+    }
+
     public function first() {
         return $this->value[0];
     }
