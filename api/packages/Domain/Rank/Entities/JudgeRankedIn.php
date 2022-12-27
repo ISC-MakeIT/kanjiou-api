@@ -2,10 +2,12 @@
 
 namespace Packages\Domain\Rank\Entities;
 
+use Carbon\CarbonImmutable;
 use Packages\Domain\GameMode\ValueObjects\GameMode;
 use Packages\Domain\Rank\ValueObjects\SearchRankCount;
 use Packages\Domain\Record\Entities\Record;
 use Packages\Domain\Record\ValueObjects\Name;
+use Packages\Domain\Record\ValueObjects\RecordedAt;
 use Packages\Domain\Record\ValueObjects\RecordId;
 use Packages\Domain\Record\ValueObjects\RecordMetaData;
 use Packages\Domain\Record\ValueObjects\SecondsLeft;
@@ -44,7 +46,8 @@ final class JudgeRankedIn {
             RecordMetaData::from(
                 Name::unsafetyFrom(Name::pointer()),
                 $this->secondsLeft()
-            )
+            ),
+            RecordedAt::from(CarbonImmutable::now())
         );
     }
 
