@@ -4,11 +4,6 @@ use App\Http\Controllers\Admin\RankController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RecordController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
-
-if (config('app.env') === 'production') {
-    URL::forceScheme('https');
-}
 
 /*
 |--------------------------------------------------------------------------
