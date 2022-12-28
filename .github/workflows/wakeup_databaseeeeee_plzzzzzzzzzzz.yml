@@ -8,4 +8,4 @@ jobs:
   hello_job:
     runs-on: ubuntu-18.04
     steps:
-      - run: curl -X GET https://kanjiouapi.onrender.com/api/time_limits
+      - run: curl -X GET https://kanjiouapi.onrender.com/api/ranks
